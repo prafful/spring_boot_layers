@@ -36,10 +36,10 @@ public class MarketRestController {
         return marketService.getEquityByid(equity_id);
     }
 
-//    @PostMapping("/equities")
-//    public Market addNewEquity(@RequestBody Market m){
-//
-//    }
+    @PostMapping("/equities")
+    public Market addNewEquity(@RequestBody Market m){
+        return marketService.saveEquity(m);
+    }
 //
 //    @PutMapping("/equities/{id}")
 //    public Market updateEquity(@PathVariable long id, @RequestBody Market m){

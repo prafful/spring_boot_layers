@@ -27,6 +27,6 @@ public class MarketServiceImpl implements MarketService {
 
     @Override
     public Market saveEquity(Market saveEquity) {
-        return null;
+        return repository.saveEquity(saveEquity);
     }
 }
