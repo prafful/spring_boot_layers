@@ -28,7 +28,7 @@ public class MarketServiceImpl implements MarketService {
     }
 
     public static MarketEntity toEntity(Market me){
-        return new MarketEntity(me.id, me.equity, me.price);
+        return new MarketEntity(null, me.equity, me.price);
     }
 
 
@@ -56,7 +56,8 @@ public class MarketServiceImpl implements MarketService {
     @Override
     public Market saveEquity(Market saveEquity) {
         //return repository.saveEquity(saveEquity);
-        saveEquity.id = 0;
+        //saveEquity.id = 0;
+        //MarketEntity newMe = new MarketEntity(null,saveEquity.equity, saveEquity.price);
         MarketEntity addedMe = repository.save(toEntity(saveEquity));
         return toModel(addedMe);
     }
