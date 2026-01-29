@@ -15,7 +15,7 @@ public class MarketEntity {
 
     @Column
     public long price;
-
+    
     public MarketEntity(Long id, String equity, long price) {
         this.id = id;
         this.equity = equity;
