@@ -11,5 +11,10 @@ public interface MarketService {
 
     Market saveEquity(Market saveEquity);
 
+    //today
+
+    Market updateEquity(long id, Market m);
+    void deleteEquityById(long id);
+
 
 }

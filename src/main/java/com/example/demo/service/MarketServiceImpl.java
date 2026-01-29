@@ -3,7 +3,9 @@ package com.example.demo.service;
 import com.example.demo.entity.MarketEntity;
 import com.example.demo.model.Market;
 import com.example.demo.repository.MarketJPARepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class MarketServiceImpl implements MarketService {
     }
 
     public static MarketEntity toEntity(Market me){
-        return new MarketEntity(null, me.equity, me.price);
+        return new MarketEntity(me.id==0?null:me.id, me.equity, me.price);
     }
 
 
@@ -61,4 +63,30 @@ public class MarketServiceImpl implements MarketService {
         MarketEntity addedMe = repository.save(toEntity(saveEquity));
         return toModel(addedMe);
     }
+
+    @Override
+    public Market updateEquity(long id, Market m) {
+        //check if equity by id is present and fetch it
+        MarketEntity me = repository.findById(id).orElseThrow();
+        //update fetched one with new value
+        me.equity = m.equity;
+        me.price = m.price;
+        //save it again
+        MarketEntity meUpdated = repository.save(me);
+        //convert it to model instance and return
+        return toModel(meUpdated);
+    }
+
+    @Override
+    public void deleteEquityById(long id) {
+        //check if equity with given id will exist
+        if(!repository.existsById(id)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Equity not found: " + id);
+        }
+        repository.deleteById(id);
+
+        //delete it
+    }
+
+
 }
