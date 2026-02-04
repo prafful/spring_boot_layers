@@ -27,7 +27,6 @@ public class MarketServiceImpl implements MarketService {
         this.sectorRepository = sectorRepository;
     }
 
-
     private static Market toModel(MarketEntity e) {
         long sectorId = e.getSector() == null ? 0 : e.getSector().getId();
         String sectorName = e.getSector() == null ? null : e.getSector().getName();

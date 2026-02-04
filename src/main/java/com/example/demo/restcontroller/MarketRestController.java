@@ -37,12 +37,6 @@ public class MarketRestController {
         return marketService.getEquityByid(equity_id);
     }
 
-//    @PostMapping("/equities")
-//    public Market addNewEquity(@RequestBody Market m){
-//        return marketService.saveEquity(m);
-//    }
-
-    // CREATE
     @PostMapping("/equities")
     @ResponseStatus(HttpStatus.CREATED)
     public Market addNewEquity(@RequestBody Market m) {
